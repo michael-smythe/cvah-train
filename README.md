@@ -26,7 +26,9 @@ sudo apt-get update && sudo apt-get install packer terraform
 ```
 
 # Clone the repo
-git clone
+```bash
+git clone git@github.com:michael-smythe/cvah-train.git
+```
 
 # Quick Start
 This will spin up a new project in your account via terraform, create the custom image via packer, and then deploy an instance of that image with terraform again. It relies on you having already authenticated via the gcloud tool. 
