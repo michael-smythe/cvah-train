@@ -14,11 +14,23 @@ provider "google" {
     zone                        = "us-central1-c"
 }
 
+resource "google_project_service" "service_api" {
+   service                      = "serviceusage.googleapis.com"
+   disable_on_destroy           = false
+}
+
+resource "google_project_service" "compute_api" {
+    depends_on 			        = [google_project_service.service_api]
+    service 			        = "compute.googleapis.com"
+    disable_on_destroy          = false
+}
+
 data "google_compute_network" "default" {
     name                        = "default"
 } 
 
 resource "google_compute_firewall" "rules" {
+  depends_on                    = [google_project_service.compute_api]
   name                          = "my-firewall-rules"
   network                       = data.google_compute_network.default.self_link
   description                   = "Creates firewall rule targeting tagged instances"
@@ -32,6 +44,7 @@ resource "google_compute_firewall" "rules" {
 }
 
 resource "google_compute_instance" "elk" {
+    depends_on                    = [google_project_service.compute_api]
     count                       = var.elk_count
     depends_on                  = [google_compute_firewall.rules]
     name			            = "elk-${count.index}"
