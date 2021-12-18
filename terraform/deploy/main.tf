@@ -44,9 +44,8 @@ resource "google_compute_firewall" "rules" {
 }
 
 resource "google_compute_instance" "elk" {
-    depends_on                    = [google_project_service.compute_api]
     count                       = var.elk_count
-    depends_on                  = [google_compute_firewall.rules]
+    depends_on                  = [google_compute_firewall.rules, google_project_service.compute_api]
     name			            = "elk-${count.index}"
     machine_type                = "n1-standard-8"
 
