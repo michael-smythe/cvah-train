@@ -29,11 +29,13 @@ data "google_billing_account" "acct" {
 }
 
 resource "google_project_service" "service_api" {
-   service                      = "serviceusage.googleapis.com"
-   disable_on_destroy           = false
+    project                     = var.project_id
+    service                     = "serviceusage.googleapis.com"
+    disable_on_destroy          = false
 }
 
 resource "google_project_service" "compute_api" {
+    project                     = var.project_id
     depends_on 			        = [google_project_service.service_api]
     service 			        = "compute.googleapis.com"
     disable_on_destroy          = false
