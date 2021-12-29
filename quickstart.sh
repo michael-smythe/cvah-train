@@ -10,8 +10,8 @@
 # Create a new project
 pushd ./terraform/setup
 # Do a plan to ensure configs are set up
+# terraform init -var "gcp_billing_account_name=My Billing Account FY22" -var "project_id=cvah-helk-training-fy22"
 # terraform plan -var "gcp_billing_account_name=My Billing Account FY22" -var "project_id=cvah-helk-training-fy22"
-# terraform init -var "gcp_billing_account_name=My Billing Account FY22"-var "project_id=cvah-helk-training-fy22"
 # terraform apply -auto-approve -var "project_id=cvah-helk-training-fy22"
 terraform init -auto-approve
 terraform apply -auto-approve
@@ -29,8 +29,8 @@ popd
 # Create a new instance 
 pushd ./terraform/deploy
 # Same plan/init/apply lifecycle as above
-# terraform init -var "gcp_billing_account_name=My Billing Account FY22"-var "project_id=cvah-helk-training-fy22"
-# terraform apply -var "gcp_billing_account_name=My Billing Account FY22"-var "project_id=cvah-helk-training-fy22"
+# terraform init -var "gcp_billing_account_name=My Billing Account FY22" -var "project_id=cvah-helk-training-fy22"
+# terraform apply -var "gcp_billing_account_name=My Billing Account FY22" -var "project_id=cvah-helk-training-fy22"
 terraform init 
 terraform apply -auto-approve
 popd
