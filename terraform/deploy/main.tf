@@ -40,7 +40,8 @@ resource "google_compute_firewall" "rules" {
     ports                       = ["80", "443", "5601", "9200", "9600", "9300"]
   }
 
-  source_tags                   = ["elk"]
+  source_ranges                 = ["0.0.0.0/0"]
+  target_tags                   = ["elk"]
 }
 
 resource "google_compute_instance" "elk" {

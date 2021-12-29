@@ -1,6 +1,21 @@
+# Example run
+# terraform plan -var "gcp_billing_account_name=My Billing Account FY22" -var 'project_id=cvah-helk-training-fy22' 
+# terraform apply -auto-approve -var "gcp_billing_account_name=My Billing Account FY22" -var 'project_id=cvah-helk-training-fy22' 
+
 variable "project_id" {
     type            = string
     default         = "cvah-helk-training"
+    # Example: 
+    # terraform plan -var 'project_id=cvah-helk-training-fy22' 
+    # The display name of the project created will be "Terraform HELK Training"
+}
+
+variable "gcp_billing_account_name" {
+    type            = string
+    default         = "My Billing Account"
+    description     = "The billing account name from billing https://console.cloud.google.com/billing."
+    # Example:
+    # terraform plan -var "gcp_billing_account_name=My Billing Account FY22"
 }
 
 provider "google" {
@@ -9,7 +24,7 @@ provider "google" {
 }
 
 data "google_billing_account" "acct" {
-  display_name = "My Billing Account"
+  display_name = var.gcp_billing_account_name
   open         = true
 }
 
