@@ -61,6 +61,12 @@ terrafrom apply -auto-approve -var 'project_id=<PICK_A_NAME_FOR_THE_PROJECT_ID>'
 # terraform init -var "gcp_billing_account_name=My Billing Account FY22" -var 'project_id=cvah-helk-training-fy22'
 # terraform apply -var "gcp_billing_account_name=My Billing Account FY22" -var 'project_id=cvah-helk-training-fy22'
 ```
+
+If you're using your Google Cloud Console instance, configure your project with a command like this (assuming the name of the project is `cvah-helk-training-fy22`)
+```bash
+gcloud config set project cvah-helk-training-fy22
+```
+
 If you would like to destroy this project and all of the resources associated with it you may do the following:
 ```bash
 cd ./terraform/setup
